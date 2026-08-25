@@ -3,6 +3,7 @@ import type { CacheService } from './cache';
 import { env as publicEnv } from '$env/dynamic/public';
 import { resolveHandle } from '../atproto';
 import { isHandle } from '@atcute/lexicons/syntax';
+import { isDidBlocked } from './moderation';
 
 export async function getActor({
 	request,
@@ -36,5 +37,7 @@ export async function getActor({
 		actor = undefined;
 	}
 
-	return isHandle(actor) ? await resolveHandle({ handle: actor }) : actor;
+	const did = isHandle(actor) ? await resolveHandle({ handle: actor }) : actor;
+
+	return isDidBlocked(did) ? undefined : did;
 }
