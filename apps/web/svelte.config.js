@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-cloudflare';
+// SELF-HOST: adapter-cloudflare helyett Node (sajat szerveren futunk, nginx mogott)
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
