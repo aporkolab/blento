@@ -30,6 +30,9 @@
 		) {
 			return pubUrl;
 		}
+		// SELF-HOST fallback a handle-alapu url ELOTT: enelkul a handle (ami maga is
+		// domain) az origin moge kerul, es latszolag relativ linket ad.
+		if (page.data.selfhostProfileUrl) return page.data.selfhostProfileUrl;
 		const handle = data.profile?.handle;
 		const actor = handle && handle !== 'handle.invalid' ? handle : data.did;
 		return `${page.url.origin}/${actor}`;
